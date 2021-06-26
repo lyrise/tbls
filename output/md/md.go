@@ -107,6 +107,16 @@ func (m *Md) OutputTable(wr io.Writer, t *schema.Table) error {
 	return nil
 }
 
+func (m *Md) OutputProcedure(wr io.Writer, s *schema.Procedure) error {
+	fmt.Println("in Md.OutputProcedure method!!")
+	/* TODO:
+	ここで、プロシージャの出力のための結果を取得する。
+	その結果をたぶん、tmpl.Execute(wr, templateData)する。
+	*/
+
+	return nil
+}
+
 // Output generate markdown files.
 func Output(s *schema.Schema, c *config.Config, force bool) (e error) {
 	docPath := c.DocPath
@@ -175,6 +185,13 @@ func Output(s *schema.Schema, c *config.Config, force bool) (e error) {
 			return errors.WithStack(err)
 		}
 	}
+
+	// procedures
+	// TODO: フラグで後方互換性を保つようにしなければならない
+	// for _, p := range s.Procedures {
+	_ = md.OutputProcedure(file, nil)
+	// }
+
 	return nil
 }
 
@@ -340,7 +357,7 @@ func DiffSchemaAndDocs(docPath string, s *schema.Schema, c *config.Config) (stri
 
 	// tables
 	diffed := map[string]struct{}{
-		"README.md": struct{}{},
+		"README.md": {},
 	}
 	for _, t := range s.Tables {
 		b := new(bytes.Buffer)
@@ -432,13 +449,13 @@ func outputExists(s *schema.Schema, path string) bool {
 
 func (m *Md) makeSchemaTemplateData(s *schema.Schema, adjust bool) map[string]interface{} {
 	tablesData := [][]string{
-		[]string{
+		{
 			m.config.MergedDict.Lookup("Name"),
 			m.config.MergedDict.Lookup("Columns"),
 			m.config.MergedDict.Lookup("Comment"),
 			m.config.MergedDict.Lookup("Type"),
 		},
-		[]string{"----", "-------", "-------", "----"},
+		{"----", "-------", "-------", "----"},
 	}
 	for _, t := range s.Tables {
 		data := []string{
@@ -541,12 +558,12 @@ func (m *Md) makeTableTemplateData(t *schema.Table, adjust bool) map[string]inte
 
 	// Constraints
 	constraintsData := [][]string{
-		[]string{
+		{
 			m.config.MergedDict.Lookup("Name"),
 			m.config.MergedDict.Lookup("Type"),
 			m.config.MergedDict.Lookup("Definition"),
 		},
-		[]string{"----", "----", "----------"},
+		{"----", "----", "----------"},
 	}
 	cComment := false
 	for _, c := range t.Constraints {
@@ -572,11 +589,11 @@ func (m *Md) makeTableTemplateData(t *schema.Table, adjust bool) map[string]inte
 
 	// Indexes
 	indexesData := [][]string{
-		[]string{
+		{
 			m.config.MergedDict.Lookup("Name"),
 			m.config.MergedDict.Lookup("Definition"),
 		},
-		[]string{"----", "----------"},
+		{"----", "----------"},
 	}
 	iComment := false
 	for _, i := range t.Indexes {
@@ -601,11 +618,11 @@ func (m *Md) makeTableTemplateData(t *schema.Table, adjust bool) map[string]inte
 
 	// Triggers
 	triggersData := [][]string{
-		[]string{
+		{
 			m.config.MergedDict.Lookup("Name"),
 			m.config.MergedDict.Lookup("Definition"),
 		},
-		[]string{"----", "----------"},
+		{"----", "----------"},
 	}
 	tComment := false
 	for _, t := range t.Triggers {

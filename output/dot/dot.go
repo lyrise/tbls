@@ -100,3 +100,7 @@ func (d *Dot) OutputTable(wr io.Writer, t *schema.Table) error {
 
 	return nil
 }
+
+func (d *Dot) OutputProcedure(wr io.Writer, s *schema.Procedure) error {
+	return nil
+}

@@ -110,12 +110,16 @@ type Driver struct {
 
 // Schema is the struct for database schema
 type Schema struct {
-	Name      string      `json:"name"`
-	Desc      string      `json:"desc"`
-	Tables    []*Table    `json:"tables"`
-	Relations []*Relation `json:"relations"`
-	Driver    *Driver     `json:"driver"`
-	Labels    Labels      `json:"labels,omitempty"`
+	Name       string       `json:"name"`
+	Desc       string       `json:"desc"`
+	Tables     []*Table     `json:"tables"`
+	Relations  []*Relation  `json:"relations"`
+	Procedures []*Procedure `json:"procedures"`
+	Driver     *Driver      `json:"driver"`
+	Labels     Labels       `json:"labels,omitempty"`
+}
+
+type Procedure struct {
 }
 
 func (s *Schema) NormalizeTableName(name string) string {

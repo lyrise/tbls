@@ -29,3 +29,12 @@ func (j *YAML) OutputTable(wr io.Writer, t *schema.Table) error {
 	}
 	return nil
 }
+
+func (j *YAML) OutputProcedure(wr io.Writer, s *schema.Procedure) error {
+	/* TODO:
+	ここで、プロシージャの出力のための結果を取得する。
+	その結果をたぶん、tmpl.Execute(wr, templateData)する。
+	*/
+
+	return nil
+}

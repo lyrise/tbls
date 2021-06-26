@@ -14,6 +14,7 @@ import (
 type Output interface {
 	OutputSchema(wr io.Writer, s *schema.Schema) error
 	OutputTable(wr io.Writer, s *schema.Table) error
+	OutputProcedure(wr io.Writer, s *schema.Procedure) error
 }
 
 func Funcs(d *dict.Dict) map[string]interface{} {

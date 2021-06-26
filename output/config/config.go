@@ -98,3 +98,12 @@ func (c *Config) OutputSchema(wr io.Writer, s *schema.Schema) error {
 func (c *Config) OutputTable(wr io.Writer, t *schema.Table) error {
 	return errors.New("not supported")
 }
+
+func (c *Config) OutputProcedure(wr io.Writer, s *schema.Procedure) error {
+	/* TODO:
+	ここで、プロシージャの出力のための結果を取得する。
+	その結果をたぶん、tmpl.Execute(wr, templateData)する。
+	*/
+
+	return nil
+}

@@ -98,6 +98,15 @@ func (x *Xlsx) OutputTable(wr io.Writer, t *schema.Table) (e error) {
 	return nil
 }
 
+func (x *Xlsx) OutputProcedure(wr io.Writer, s *schema.Procedure) error {
+	/* TODO:
+	ここで、プロシージャの出力のための結果を取得する。
+	その結果をたぶん、tmpl.Execute(wr, templateData)する。
+	*/
+
+	return nil
+}
+
 func (x *Xlsx) createSchemaSheet(w *excl.Workbook, s *schema.Schema) error {
 	sheetName := fmt.Sprintf("%s %s", x.config.MergedDict.Lookup("Tables of"), s.Name)
 	if utf8.RuneCountInString(x.config.MergedDict.Lookup(sheetName)) > 31 { // MS Excel assumes a maximum length of 31 characters for sheet name

@@ -44,3 +44,7 @@ func (j *JSON) OutputTable(wr io.Writer, t *schema.Table) error {
 	}
 	return nil
 }
+
+func (j *JSON) OutputProcedure(wr io.Writer, s *schema.Procedure) error {
+	return nil
+}

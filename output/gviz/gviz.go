@@ -136,3 +136,7 @@ func getFaceFunc(keyword string) (func(size float64) (font.Face, error), error) 
 	}
 	return faceFunc, nil
 }
+
+func (g *Gviz) OutputProcedure(wr io.Writer, s *schema.Procedure) error {
+	return nil
+}
