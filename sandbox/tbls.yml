@@ -1,0 +1,8 @@
+# .tbls.yml
+
+# DSN (Database Source Name) to connect database
+dsn: pg://postgres:test@localhost:5432/postgres?sslmode=disable
+
+# Path to generate document
+# Default is `dbdoc`
+docPath: doc/schema

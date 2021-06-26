@@ -1,3 +1,19 @@
+# テスト時のコマンド
+
+## postgresの起動
+
+```sh
+psql -h localhost -p 5432 -U postgres -d postgres
+```
+
+## main.goの実行
+
+```sh
+(cd ./sandbox && go run ../main.go doc)
+```
+
+---
+
 <p align="center">
 <br>
 <img src="https://github.com/k1LoW/tbls/raw/master/img/logo.png" width="200" alt="tbls">
